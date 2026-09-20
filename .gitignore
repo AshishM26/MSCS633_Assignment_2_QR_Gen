@@ -7,3 +7,11 @@ venv/
 .ruff_cache/
 .DS_Store
 .vscode/
+
+# Local instructions and personal notes
+.local-notes/
+AGENTS.md
+AGENTS.override.md
+CLAUDE.md
+.codex/
+.agents/

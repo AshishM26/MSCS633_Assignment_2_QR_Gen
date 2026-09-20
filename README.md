@@ -96,13 +96,3 @@ The student-provided screenshot is also embedded in the Word report.
 
 ### Repository
 https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen
-
-### Submission
-Attach [the Word report](report/MSCS633_Hands_On_Assignment_2_Report.docx) in Blackboard and share the repository URL above. The repository includes the Python source, dependency manifest, tests, and application screenshot.
-
-### Learning Outcomes
-Practice separating validation and QR generation from GUI event handling, managing dependencies, handling errors, testing reusable functions, and documenting a reproducible desktop application.
-
-### Technical References
-- [qrcode package documentation](https://pypi.org/project/qrcode/)
-- [Python URL parsing documentation](https://docs.python.org/3/library/urllib.parse.html)
