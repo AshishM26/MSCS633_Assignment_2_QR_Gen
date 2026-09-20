@@ -81,7 +81,7 @@ python -m unittest discover -s tests -v
 python -m compileall -q qr_generator.py tests
 python -m pip check
 ```
-Ten tests cover valid/invalid URLs, hosts/ports, PNG generation, directory creation, whitespace normalization, capacity overflow, and file errors. All passed during validation.
+Fourteen tests cover valid/invalid URLs, hosts/ports, PNG generation, directory creation, whitespace normalization, capacity overflow, file errors, replacement of saved output, and preservation of the previous PNG after invalid input. All passed during validation.
 
 Optional development-only lint checks (Ruff is not needed to run the app):
 ```bash
@@ -98,6 +98,17 @@ The saved PNG was decoded using the built-in macOS Vision framework and matched 
 
 ### Repository
 https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen
+
+### Assignment Deliverables
+| Requirement | Repository evidence | Status |
+|---|---|---|
+| Python source code | [qr_generator.py](qr_generator.py) | Complete |
+| Dependency manifest | [requirements.txt](requirements.txt) | Complete; runtime packages pinned |
+| Screenshot in Word document | [Word report](report/MSCS633_Hands_On_Assignment_2_Report.docx) | Awaiting real screenshot; placeholder clearly marked |
+| GitHub link to share code | [Public repository](https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen) | Available |
+| Coding best practices and comments | Small functions, type hints, docstrings, focused comments, error handling, pathlib, main guard, tests | Checked |
+
+The Word report is the Blackboard document deliverable. Share the repository URL alongside it. Resolve the marked screenshot item before submission.
 
 ### Learning Outcomes
 Practice separating validation and QR generation from GUI event handling, managing dependencies, handling errors, testing reusable functions, and documenting a reproducible desktop application.

@@ -26,7 +26,7 @@ Figure 1. QR Code Generator application successfully generating a QR code from t
 
 Validation was performed on macOS using Python 3.11.1, Tk 8.6, qrcode 8.2, and Pillow 11.3.0. Dependency installation and pip check succeeded. The actual Tkinter window launched and its Generate button callback was exercised with valid, empty, malformed, and oversized input. The valid repository URL produced a visible preview and a non-empty saved PNG. Invalid input and oversized data displayed errors without closing the app.
 
-The saved PNG was independently decoded with the built-in macOS Vision framework, which returned the exact repository URL. All 10 unittest tests passed. Python compilation and Ruff style/import checks passed. The GUI smoke check was automated; student manual review and phone scanning are not claimed. macOS rejected the screenshot capture, so the only outstanding artifact step is capturing the live window and inserting it into this report.
+The saved PNG was independently decoded with the built-in macOS Vision framework, which returned the exact repository URL. All 14 unittest tests passed, including checks that invalid or oversized input preserves a previously generated PNG. Python compilation and Ruff style/import checks passed. The GUI smoke check was automated; student manual review and phone scanning are not claimed. macOS rejected the screenshot capture, so the only outstanding artifact step is capturing the live window and inserting it into this report.
 
 ## 5. GitHub Repository
 

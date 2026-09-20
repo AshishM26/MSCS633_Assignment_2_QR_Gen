@@ -31,6 +31,9 @@ class URLValidationTests(unittest.TestCase):
             "https://bad host.com",
             "https://-bad.com",
             "https://a..com",
+            "https://example.com..",
+            "https://[::1]extra",
+            "https://example.com:0",
             "https://example.com:abc",
             "https://example.com:99999",
             "https://example.com:",
@@ -45,6 +48,8 @@ class URLValidationTests(unittest.TestCase):
     def test_supported_hosts(self):
         for url in (
             "https://example.com:443",
+            "https://example.com.",
+            "http://[::1]:8000",
             "http://localhost:8000",
             "http://127.0.0.1",
             "http://[::1]",
@@ -92,6 +97,39 @@ class QRGenerationTests(unittest.TestCase):
             self.assertRaises(OSError),
         ):
             generate_qr_code("https://example.com", Path(directory))
+
+    def test_invalid_input_preserves_existing_png(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = generate_qr_code("https://example.com", Path(directory) / "qr.png")
+            original = path.read_bytes()
+            with self.assertRaises(ValueError):
+                generate_qr_code("not a URL", path)
+            self.assertEqual(path.read_bytes(), original)
+
+    def test_oversized_input_preserves_existing_png(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = generate_qr_code("https://example.com", Path(directory) / "qr.png")
+            original = path.read_bytes()
+            with self.assertRaises(DataOverflowError):
+                generate_qr_code("https://example.com/" + "a" * 5000, path)
+            self.assertEqual(path.read_bytes(), original)
+
+    def test_new_url_replaces_previous_png(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = generate_qr_code("https://example.com", Path(directory) / "qr.png")
+            original = path.read_bytes()
+            generate_qr_code("https://example.org/different", path)
+            self.assertNotEqual(path.read_bytes(), original)
+            with Image.open(path) as image:
+                image.verify()
+
+    def test_assignment_repository_url(self):
+        url = "https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen"
+        self.assertTrue(validate_url(url))
+        with tempfile.TemporaryDirectory() as directory:
+            path = generate_qr_code(url, Path(directory) / "qr.png")
+            with Image.open(path) as image:
+                image.verify()
 
     def test_surrounding_whitespace_is_trimmed(self):
         with tempfile.TemporaryDirectory() as directory:

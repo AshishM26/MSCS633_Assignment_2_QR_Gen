@@ -1,2 +1,4 @@
+# Runtime dependencies; Tkinter and unittest are provided by Python.
+# Pillow is used directly for the Tkinter image preview.
 qrcode[pil]==8.2
 Pillow==11.3.0

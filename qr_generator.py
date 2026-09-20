@@ -16,7 +16,11 @@ VALIDATION_MESSAGE = "Enter a valid http:// or https:// URL with a hostname."
 
 
 def validate_url(url: str) -> bool:
-    """Check URL syntax locally; this does not check website availability."""
+    """Check HTTP(S) URL syntax without contacting the website.
+
+    Accept domain names, localhost, and IP addresses with optional ports.
+    Reject credentials and embedded whitespace; trim surrounding whitespace.
+    """
     url = url.strip()
     if not url or any(
         character.isspace() or ord(character) < 32 or ord(character) == 127
@@ -35,19 +39,24 @@ def validate_url(url: str) -> bool:
             return False
         if parts.netloc.endswith(":"):
             return False
+        # Bracketed IPv6 hosts may only be followed by an optional port.
+        if parts.netloc.startswith("[") and not re.fullmatch(
+            r"\[[^\]]+\](?::[0-9]+)?", parts.netloc
+        ):
+            return False
         try:
             ipaddress.ip_address(host)
             return True
         except ValueError:
             pass
-        host = host.encode("idna").decode("ascii").rstrip(".")
+        # IDNA supports international domain names. One final DNS dot is valid.
+        host = host.encode("idna").decode("ascii").removesuffix(".")
         if len(host) > 253:
             return False
         labels = host.split(".")
         return all(
             re.fullmatch(
-                r"[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}"
-                r"[a-zA-Z0-9])?",
+                r"[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?",
                 label,
             )
             for label in labels
@@ -127,6 +136,9 @@ class QRCodeGeneratorApp:
         self.photo = None
         self.details.set("")
         url = self.url.get().strip()
+        if not url:
+            self.show_error("Enter a URL before generating a QR code.")
+            return
         try:
             output_path = generate_qr_code(url)
             with Image.open(output_path) as image:
