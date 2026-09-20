@@ -22,13 +22,15 @@ MSCS633_Assignment_2_QR_Gen/
 ├── README.md
 ├── .gitignore
 ├── output/qr_code.png
-├── screenshots/README.md
+├── screenshots/
+│   ├── application_output.png
+│   └── README.md
 ├── report/
 │   ├── MSCS633_Hands_On_Assignment_2_Report.docx
 │   └── report_text.md
 └── tests/test_qr_generator.py
 ```
-`application_output.png` must be added after the manual screenshot step below.
+The genuine application screenshot is embedded in the Word report and included separately for inspection.
 
 ### Technologies Used
 Python, Tkinter/ttk, qrcode, Pillow, pathlib, urllib.parse, and unittest. Runtime packages are pinned in `requirements.txt`; tests use the standard library. Tkinter is supplied by Python/your operating system, not pip.
@@ -94,7 +96,12 @@ The saved PNG was decoded using the built-in macOS Vision framework and matched 
 ### Output
 `output/qr_code.png` is saved relative to the script, regardless of the terminal's current folder. Each successful generation replaces the previous PNG. Invalid input clears the preview but leaves any previously saved PNG unchanged.
 
-**Remaining submission step:** macOS rejected programmatic screen capture. Follow [screenshot instructions](screenshots/README.md), save `screenshots/application_output.png`, and replace the marked placeholder in the Word report. Do not submit the placeholder as final screenshot evidence.
+### Application Screenshot
+![Running QR Code Generator application](screenshots/application_output.png)
+
+The screenshot was captured and supplied by the student. It shows the entered repository URL, QR code, success message, and saved path. The same image is embedded in the Word report.
+
+**Submission:** Attach `report/MSCS633_Hands_On_Assignment_2_Report.docx` in Blackboard and include the repository URL to share the Python source and manifest. All required artifacts are included; review the document before submitting.
 
 ### Repository
 https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen
@@ -104,11 +111,11 @@ https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen
 |---|---|---|
 | Python source code | [qr_generator.py](qr_generator.py) | Complete |
 | Dependency manifest | [requirements.txt](requirements.txt) | Complete; runtime packages pinned |
-| Screenshot in Word document | [Word report](report/MSCS633_Hands_On_Assignment_2_Report.docx) | Awaiting real screenshot; placeholder clearly marked |
+| Screenshot in Word document | [Word report](report/MSCS633_Hands_On_Assignment_2_Report.docx) | Complete; genuine screenshot embedded |
 | GitHub link to share code | [Public repository](https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen) | Available |
 | Coding best practices and comments | Small functions, type hints, docstrings, focused comments, error handling, pathlib, main guard, tests | Checked |
 
-The Word report is the Blackboard document deliverable. Share the repository URL alongside it. Resolve the marked screenshot item before submission.
+The Word report is the Blackboard document deliverable. Share the repository URL alongside it. The report includes the genuine application output screenshot and a clickable repository link.
 
 ### Learning Outcomes
 Practice separating validation and QR generation from GUI event handling, managing dependencies, handling errors, testing reusable functions, and documenting a reproducible desktop application.

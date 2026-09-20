@@ -16,17 +16,15 @@ The qrcode library uses an automatically fitted QR version, medium error correct
 
 ## 3. Application Output
 
-SCREENSHOT REQUIRED — Insert the genuine running-application screenshot here before submission.
+![QR Code Generator application output](../screenshots/application_output.png)
 
-Launch the app, enter the repository URL shown in section 5, and click Generate QR Code. Capture the window with the URL, QR code, and success message visible. Save it as screenshots/application_output.png and replace this placeholder in Word.
-
-Figure 1. QR Code Generator application successfully generating a QR code from the GitHub repository URL. (Caption prepared; screenshot pending.)
+Figure 1. QR Code Generator application successfully generating a QR code from the GitHub repository URL.
 
 ## 4. Runtime Verification
 
 Validation was performed on macOS using Python 3.11.1, Tk 8.6, qrcode 8.2, and Pillow 11.3.0. Dependency installation and pip check succeeded. The actual Tkinter window launched and its Generate button callback was exercised with valid, empty, malformed, and oversized input. The valid repository URL produced a visible preview and a non-empty saved PNG. Invalid input and oversized data displayed errors without closing the app.
 
-The saved PNG was independently decoded with the built-in macOS Vision framework, which returned the exact repository URL. All 14 unittest tests passed, including checks that invalid or oversized input preserves a previously generated PNG. Python compilation and Ruff style/import checks passed. The GUI smoke check was automated; student manual review and phone scanning are not claimed. macOS rejected the screenshot capture, so the only outstanding artifact step is capturing the live window and inserting it into this report.
+The saved PNG was independently decoded with the built-in macOS Vision framework, which returned the exact repository URL. All 14 unittest tests passed, including checks that invalid or oversized input preserves a previously generated PNG. Python compilation and Ruff style/import checks passed. The GUI smoke check was automated. Figure 1 is a genuine application screenshot supplied by the student, showing the repository URL, generated QR code, success message, and saved file path. No phone-scanning verification is claimed.
 
 ## 5. GitHub Repository
 
@@ -34,4 +32,4 @@ https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen
 
 ## 6. Conclusion
 
-This implementation demonstrates URL validation, QR generation, modular Python functions, GUI event handling, and machine-readable output. The tests and setup instructions support reproducibility. Completing the screenshot evidence will make the report ready for final student review and submission.
+This implementation demonstrates URL validation, QR generation, modular Python functions, GUI event handling, and machine-readable output. The tests and setup instructions support reproducibility. The source code, dependency manifest, example PNG, and Word report with application screenshot provide the required submission artifacts.
