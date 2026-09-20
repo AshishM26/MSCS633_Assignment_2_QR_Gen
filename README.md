@@ -22,16 +22,12 @@ MSCS633_Assignment_2_QR_Gen/
 ├── README.md
 ├── .gitignore
 ├── output/qr_code.png
-├── screenshots/
-│   ├── application_output.png
-│   └── README.md
+├── screenshots/application_output.png
 ├── report/
 │   ├── MSCS633_Hands_On_Assignment_2_Report.docx
 │   └── report_text.md
 └── tests/test_qr_generator.py
 ```
-The genuine application screenshot is embedded in the Word report and included separately for inspection.
-
 ### Technologies Used
 Python, Tkinter/ttk, qrcode, Pillow, pathlib, urllib.parse, and unittest. Runtime packages are pinned in `requirements.txt`; tests use the standard library. Tkinter is supplied by Python/your operating system, not pip.
 
@@ -72,10 +68,7 @@ Use:
 ```text
 https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen
 ```
-The window displays the QR code, a success message, the encoded URL, and the saved path.
-
-![Example generated QR code](output/qr_code.png)
-This image is the generated PNG, not an application screenshot.
+Click **Generate QR Code** to display and save the result.
 
 ### Testing
 ```bash
@@ -83,7 +76,7 @@ python -m unittest discover -s tests -v
 python -m compileall -q qr_generator.py tests
 python -m pip check
 ```
-Fourteen tests cover valid/invalid URLs, hosts/ports, PNG generation, directory creation, whitespace normalization, capacity overflow, file errors, replacement of saved output, and preservation of the previous PNG after invalid input. All passed during validation.
+All 14 tests passed, covering URL validation, PNG generation, file errors, and preservation of existing output after invalid input.
 
 Optional development-only lint checks (Ruff is not needed to run the app):
 ```bash
@@ -91,7 +84,7 @@ python -m pip install ruff==0.16.8
 python -m ruff check --select E,F,I --line-length 88 qr_generator.py tests
 python -m ruff format --check qr_generator.py tests
 ```
-The saved PNG was decoded using the built-in macOS Vision framework and matched the exact repository URL. The actual Tkinter window was launched and exercised through its button callback with valid, empty, malformed, and oversized input. This was an automated desktop smoke check, not a claim of student manual testing.
+The live GUI passed automated checks for valid and invalid input. macOS Vision decoded the saved PNG to the exact repository URL.
 
 ### Output
 `output/qr_code.png` is saved relative to the script, regardless of the terminal's current folder. Each successful generation replaces the previous PNG. Invalid input clears the preview but leaves any previously saved PNG unchanged.
@@ -99,23 +92,13 @@ The saved PNG was decoded using the built-in macOS Vision framework and matched 
 ### Application Screenshot
 ![Running QR Code Generator application](screenshots/application_output.png)
 
-The screenshot was captured and supplied by the student. It shows the entered repository URL, QR code, success message, and saved path. The same image is embedded in the Word report.
-
-**Submission:** Attach `report/MSCS633_Hands_On_Assignment_2_Report.docx` in Blackboard and include the repository URL to share the Python source and manifest. All required artifacts are included; review the document before submitting.
+The student-provided screenshot is also embedded in the Word report.
 
 ### Repository
 https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen
 
-### Assignment Deliverables
-| Requirement | Repository evidence | Status |
-|---|---|---|
-| Python source code | [qr_generator.py](qr_generator.py) | Complete |
-| Dependency manifest | [requirements.txt](requirements.txt) | Complete; runtime packages pinned |
-| Screenshot in Word document | [Word report](report/MSCS633_Hands_On_Assignment_2_Report.docx) | Complete; genuine screenshot embedded |
-| GitHub link to share code | [Public repository](https://github.com/AshishM26/MSCS633_Assignment_2_QR_Gen) | Available |
-| Coding best practices and comments | Small functions, type hints, docstrings, focused comments, error handling, pathlib, main guard, tests | Checked |
-
-The Word report is the Blackboard document deliverable. Share the repository URL alongside it. The report includes the genuine application output screenshot and a clickable repository link.
+### Submission
+Attach [the Word report](report/MSCS633_Hands_On_Assignment_2_Report.docx) in Blackboard and share the repository URL above. The repository includes the Python source, dependency manifest, tests, and application screenshot.
 
 ### Learning Outcomes
 Practice separating validation and QR generation from GUI event handling, managing dependencies, handling errors, testing reusable functions, and documenting a reproducible desktop application.
